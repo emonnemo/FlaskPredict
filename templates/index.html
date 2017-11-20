@@ -1,0 +1,75 @@
+<html>
+<head>
+	<title>Prediction Web Page</title>
+	<script type="text/javascript" src="{{url_for('static', filename='app.js')}}"></script>
+</head>
+<body>
+	<div>
+		<form action = "http://localhost:5000/predict" method = "post" onsubmit="return submitForm(this);">
+			<table>
+				<tr>
+					<td>Age</td>
+					<td><input id="age" type="text" name="age" /><br></td>
+				</tr>
+				<tr>
+					<td>Workclass</td>
+					<td><input id="workclass" type="text" name="workclass" /><br></td>
+				</tr>
+				<tr>
+					<td>fnlwgt</td>
+					<td><input id="fnlwgt" type="text" name="fnlwgt" /><br></td>
+				</tr>
+				<tr>
+					<td>Education</td>
+					<td><input id="education" type="text" name="education" /><br></td>
+				</tr>
+				<tr>
+					<td>Education number</td>
+					<td><input id="educationNumber" type="text" name="educationNumber" /><br></td>
+				</tr>
+				<tr>
+					<td>Marital Status</td>
+					<td><input id="maritalStatus" type="text" name="maritalStatus" /><br></td>
+				</tr>
+				<tr>
+					<td>Occupation</td>
+					<td><input id="occupation" type="text" name="occupation" /><br></td>
+				</tr>
+				<tr>
+					<td>Relationship</td>
+					<td><input id="relationship" type="text" name="relationship" /><br></td>
+				</tr>
+				<tr>
+					<td>Race</td>
+					<td><input id="race" type="text" name="race" /><br></td>
+				</tr>
+				<tr>
+					<td>Sex</td>
+					<td><input id="sex" type="text" name="sex" /><br></td>
+				</tr>
+				<tr>
+					<td>Capital Gain</td>
+					<td><input id="capitalGain" type="text" name="capitalGain" /><br></td>
+				</tr>
+				<tr>
+					<td>Capital Loss</td>
+					<td><input id="capitalLoss" type="text" name="capitalLoss" /><br></td>
+				</tr>
+				<tr>
+					<td>Hours Per Week</td>
+					<td><input id="hoursPerWeek" type="text" name="hoursPerWeek" /><br></td>
+				</tr>
+				<tr>
+					<td>Native Country</td>
+					<td><input id="nativeCountry" type="text" name="nativeCountry" /><br></td>
+				</tr>
+			</table>
+			<input type="submit" value="Predict" /><br>
+		</form>
+	</div>
+	<div id="predict-result">
+		&nbsp;		
+	</div>
+  
+</body>
+</html>
