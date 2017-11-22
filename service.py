@@ -35,5 +35,5 @@ def predict():
 			capitalGain, capitalLoss, hoursPerWeek, nativeCountry)
 
 if __name__ == '__main__':
-   model = joblib.load('static/id3mode.pkl')
+   model = joblib.load('static/model/id3modeLE.pkl')
    app.run(debug = True)
