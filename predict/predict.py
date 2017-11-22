@@ -14,9 +14,6 @@ import numpy
 import pandas as pd
 import pickle
 
-LESS_THAN_50K = '<=50K'
-MORE_THAN_50K = '>50K'
-
 class DataFrameImputer(TransformerMixin):
 
     def __init__(self):
@@ -62,6 +59,13 @@ def labelEncode(listName, columnName, modeDict):
 		listName[columnName] = modeDict[columnName] # encode the unknown value in train data using the mode
 	return listName
 
+def handleEmpty(listName, columnName):
+	try:
+		listName[columnName] = int(listName[columnName])
+	except:
+		listName[columnName] = -1
+	return listName
+
 def predictResult(model, age, workclass, fnlwgt, education, educationNumber,
 	maritalStatus, occupation, relationship, race, sex,
 	capitalGain, capitalLoss, hoursPerWeek, nativeCountry):
@@ -73,6 +77,14 @@ def predictResult(model, age, workclass, fnlwgt, education, educationNumber,
 		'hours-per-week', 'native-country']
 
 	inputData = pd.DataFrame.from_records(input, columns=labels)
+
+	# handle the empty value in integer valued columns
+	inputData = handleEmpty(inputData, 'age')
+	inputData = handleEmpty(inputData, 'fnlwgt')
+	inputData = handleEmpty(inputData, 'education-num')
+	inputData = handleEmpty(inputData, 'capital-gain')
+	inputData = handleEmpty(inputData, 'capital-loss')
+	inputData = handleEmpty(inputData, 'hours-per-week')
 
 	# preprocessing the input
 	inputData = DataFrameImputer().fit_transform(inputData)
@@ -108,7 +120,4 @@ def predictResult(model, age, workclass, fnlwgt, education, educationNumber,
 	inputPreprocessed = temporaryInputDataFrame.as_matrix()
 
 	prediction = model.predict(inputPreprocessed)
-	if prediction[0] == 0:
-		return LESS_THAN_50K
-	else:
-		return MORE_THAN_50K
+	return prediction[0]
