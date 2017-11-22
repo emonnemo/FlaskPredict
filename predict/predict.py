@@ -14,17 +14,20 @@ import numpy
 import pandas as pd
 import pickle
 
+LESS_THAN_50K = '<=50K'
+MORE_THAN_50K = '>50K'
+
 class DataFrameImputer(TransformerMixin):
 
     def __init__(self):
-        """Impute missing values.
+        '''Impute missing values.
 
         Columns of dtype object are imputed with the most frequent value 
         in column.
 
         Columns of other types are imputed with mean of column.
 
-        """
+        '''
     def fit(self, X, y=None):
 
         self.fill = pd.Series([X[c].value_counts().index[0]
@@ -65,9 +68,9 @@ def predictResult(model, age, workclass, fnlwgt, education, educationNumber,
 	input = [(age, workclass, fnlwgt, education, educationNumber,
 		maritalStatus, occupation, relationship, race, sex,
 		capitalGain, capitalLoss, hoursPerWeek, nativeCountry)]
-	labels = ["age", "workclass", "fnlwgt", "education", "education-num", "marital-status",
-		"occupation", "relationship", "race", "sex", "capital-gain", "capital-loss",
-		"hours-per-week", "native-country"]
+	labels = ['age', 'workclass', 'fnlwgt', 'education', 'education-num', 'marital-status',
+		'occupation', 'relationship', 'race', 'sex', 'capital-gain', 'capital-loss',
+		'hours-per-week', 'native-country']
 
 	inputData = pd.DataFrame.from_records(input, columns=labels)
 
@@ -75,7 +78,7 @@ def predictResult(model, age, workclass, fnlwgt, education, educationNumber,
 	inputData = DataFrameImputer().fit_transform(inputData)
 
 	# load the mode data
-	pickleIn = open("static/model/mode_dict.pickle","rb")
+	pickleIn = open('static/model/mode_dict.pickle','rb')
 	modeDict = pickle.load(pickleIn)
 
 	# label encode every column with string value
@@ -91,10 +94,11 @@ def predictResult(model, age, workclass, fnlwgt, education, educationNumber,
 	# later should handle if the data is not in the label encoder
 
 	# one hot encoding
-	temporaryInputData = inputData[["workclass", "education", "education-num", "marital-status", "occupation", "relationship", "sex", "capital-gain", "capital-loss"]].as_matrix()
+	temporaryInputData = inputData[['workclass', 'education', 'education-num', 'marital-status', 'occupation', 'relationship', 'sex', 'capital-gain', 'capital-loss']].as_matrix()
 	temporaryInputDataFrame = pd.DataFrame(temporaryInputData)
-	temporaryInputDataFrame.columns = ["workclass", "education", "education-num", "marital-status", "occupation", "relationship", "sex", "capital-gain", "capital-loss"]
+	temporaryInputDataFrame.columns = ['workclass', 'education', 'education-num', 'marital-status', 'occupation', 'relationship', 'sex', 'capital-gain', 'capital-loss']
 
+	# encode using one hot encoding depends on the min range and max range in the columns' possible value
 	temporaryInputDataFrame = oneHotEncode(temporaryInputDataFrame, 'relationship', 0, 5)
 	temporaryInputDataFrame = oneHotEncode(temporaryInputDataFrame, 'workclass', 1, 8)
 	temporaryInputDataFrame = oneHotEncode(temporaryInputDataFrame, 'education', 0, 15)
@@ -105,6 +109,6 @@ def predictResult(model, age, workclass, fnlwgt, education, educationNumber,
 
 	prediction = model.predict(inputPreprocessed)
 	if prediction[0] == 0:
-		return '<=50K'
+		return LESS_THAN_50K
 	else:
-		return '>50K'
+		return MORE_THAN_50K
