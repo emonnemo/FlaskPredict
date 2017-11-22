@@ -69,39 +69,39 @@ def predictResult(model, age, workclass, fnlwgt, education, educationNumber,
 		"occupation", "relationship", "race", "sex", "capital-gain", "capital-loss",
 		"hours-per-week", "native-country"]
 
-	input_data = pd.DataFrame.from_records(input, columns=labels)
+	inputData = pd.DataFrame.from_records(input, columns=labels)
 
 	# preprocessing the input
-	input_data = DataFrameImputer().fit_transform(input_data)
+	inputData = DataFrameImputer().fit_transform(inputData)
 
 	# load the mode data
-	pickle_in = open("static/model/mode_dict.pickle","rb")
-	mode_dict = pickle.load(pickle_in)
+	pickleIn = open("static/model/mode_dict.pickle","rb")
+	modeDict = pickle.load(pickleIn)
 
 	# label encode every column with string value
-	input_data = labelEncode(input_data, 'workclass', mode_dict)
-	input_data = labelEncode(input_data, 'education', mode_dict)
-	input_data = labelEncode(input_data, 'marital-status', mode_dict)
-	input_data = labelEncode(input_data, 'occupation', mode_dict)
-	input_data = labelEncode(input_data, 'relationship', mode_dict)
-	input_data = labelEncode(input_data, 'race', mode_dict)
-	input_data = labelEncode(input_data, 'sex', mode_dict)
-	input_data = labelEncode(input_data, 'native-country', mode_dict)
+	inputData = labelEncode(inputData, 'workclass', modeDict)
+	inputData = labelEncode(inputData, 'education', modeDict)
+	inputData = labelEncode(inputData, 'marital-status', modeDict)
+	inputData = labelEncode(inputData, 'occupation', modeDict)
+	inputData = labelEncode(inputData, 'relationship', modeDict)
+	inputData = labelEncode(inputData, 'race', modeDict)
+	inputData = labelEncode(inputData, 'sex', modeDict)
+	inputData = labelEncode(inputData, 'native-country', modeDict)
 
 	# later should handle if the data is not in the label encoder
 
 	# one hot encoding
-	atributtest = input_data[["workclass", "education", "education-num", "marital-status", "occupation", "relationship", "sex", "capital-gain", "capital-loss"]].as_matrix()
-	atributtemptest = pd.DataFrame(atributtest)
-	atributtemptest.columns = ["workclass", "education", "education-num", "marital-status", "occupation", "relationship", "sex", "capital-gain", "capital-loss"]
+	temporaryInputData = inputData[["workclass", "education", "education-num", "marital-status", "occupation", "relationship", "sex", "capital-gain", "capital-loss"]].as_matrix()
+	temporaryInputDataFrame = pd.DataFrame(temporaryInputData)
+	temporaryInputDataFrame.columns = ["workclass", "education", "education-num", "marital-status", "occupation", "relationship", "sex", "capital-gain", "capital-loss"]
 
-	atributtemptest = oneHotEncode(atributtemptest, 'relationship', 0, 5)
-	atributtemptest = oneHotEncode(atributtemptest, 'workclass', 1, 8)
-	atributtemptest = oneHotEncode(atributtemptest, 'education', 0, 15)
-	atributtemptest = oneHotEncode(atributtemptest, 'marital-status', 0, 6)
-	atributtemptest = oneHotEncode(atributtemptest, 'occupation', 1, 14)
+	temporaryInputDataFrame = oneHotEncode(temporaryInputDataFrame, 'relationship', 0, 5)
+	temporaryInputDataFrame = oneHotEncode(temporaryInputDataFrame, 'workclass', 1, 8)
+	temporaryInputDataFrame = oneHotEncode(temporaryInputDataFrame, 'education', 0, 15)
+	temporaryInputDataFrame = oneHotEncode(temporaryInputDataFrame, 'marital-status', 0, 6)
+	temporaryInputDataFrame = oneHotEncode(temporaryInputDataFrame, 'occupation', 1, 14)
 
-	inputPreprocessed = atributtemptest.as_matrix()
+	inputPreprocessed = temporaryInputDataFrame.as_matrix()
 
 	prediction = model.predict(inputPreprocessed)
 	if prediction[0] == 0:
