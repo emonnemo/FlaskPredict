@@ -78,7 +78,7 @@ def predictResult(model, age, workclass, fnlwgt, education, educationNumber,
 
 	inputData = pd.DataFrame.from_records(input, columns=labels)
 
-	# handle the empty value in integer valued columns
+	# handle the not integer value in integer valued columns
 	inputData = handleEmpty(inputData, 'age')
 	inputData = handleEmpty(inputData, 'fnlwgt')
 	inputData = handleEmpty(inputData, 'education-num')
@@ -102,8 +102,6 @@ def predictResult(model, age, workclass, fnlwgt, education, educationNumber,
 	inputData = labelEncode(inputData, 'race', modeDict)
 	inputData = labelEncode(inputData, 'sex', modeDict)
 	inputData = labelEncode(inputData, 'native-country', modeDict)
-
-	# later should handle if the data is not in the label encoder
 
 	# one hot encoding
 	temporaryInputData = inputData[['workclass', 'education', 'education-num', 'marital-status', 'occupation', 'relationship', 'sex', 'capital-gain', 'capital-loss']].as_matrix()
