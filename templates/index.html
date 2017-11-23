@@ -2,74 +2,177 @@
 <head>
 	<title>Prediction Web Page</title>
 	<script type="text/javascript" src="{{url_for('static', filename='app.js')}}"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-	<div>
-		<form action = "http://localhost:5000/predict" method = "post" onsubmit="return submitForm(this);">
-			<table>
-				<tr>
-					<td>Age</td>
-					<td><input id="age" type="text" name="age" /><br></td>
-				</tr>
-				<tr>
-					<td>Workclass</td>
-					<td><input id="workclass" type="text" name="workclass" /><br></td>
-				</tr>
-				<tr>
-					<td>fnlwgt</td>
-					<td><input id="fnlwgt" type="text" name="fnlwgt" /><br></td>
-				</tr>
-				<tr>
-					<td>Education</td>
-					<td><input id="education" type="text" name="education" /><br></td>
-				</tr>
-				<tr>
-					<td>Education number</td>
-					<td><input id="educationNumber" type="text" name="educationNumber" /><br></td>
-				</tr>
-				<tr>
-					<td>Marital Status</td>
-					<td><input id="maritalStatus" type="text" name="maritalStatus" /><br></td>
-				</tr>
-				<tr>
-					<td>Occupation</td>
-					<td><input id="occupation" type="text" name="occupation" /><br></td>
-				</tr>
-				<tr>
-					<td>Relationship</td>
-					<td><input id="relationship" type="text" name="relationship" /><br></td>
-				</tr>
-				<tr>
-					<td>Race</td>
-					<td><input id="race" type="text" name="race" /><br></td>
-				</tr>
-				<tr>
-					<td>Sex</td>
-					<td><input id="sex" type="text" name="sex" /><br></td>
-				</tr>
-				<tr>
-					<td>Capital Gain</td>
-					<td><input id="capitalGain" type="text" name="capitalGain" /><br></td>
-				</tr>
-				<tr>
-					<td>Capital Loss</td>
-					<td><input id="capitalLoss" type="text" name="capitalLoss" /><br></td>
-				</tr>
-				<tr>
-					<td>Hours Per Week</td>
-					<td><input id="hoursPerWeek" type="text" name="hoursPerWeek" /><br></td>
-				</tr>
-				<tr>
-					<td>Native Country</td>
-					<td><input id="nativeCountry" type="text" name="nativeCountry" /><br></td>
-				</tr>
-			</table>
-			<input type="submit" value="Predict" /><br>
-		</form>
-	</div>
-	<div id="predict-result">
-		&nbsp;		
-	</div>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">Neptunus</a>
+	    </div>
+	    <ul class="nav navbar-nav">
+	      <li class="active"><a href="http://localhost:5000/index">Home</a></li>
+	    </ul>
+	    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> &nbsp;About</a></li>
+    </ul>
+	  </div>
+	</nav>
+	<section>
+		<div class="container">
+			<br><br><br><br>
+				<form action = "http://localhost:5000/predict" method = "post" onsubmit="return submitForm(this);" class="form-horizontal">
+					<div class="form-group">
+						<div class="col-lg-4"></div>
+						<div class="col-lg-2">
+							<label class="control-label" for="age">Age</label>
+						</div>
+						<div class="col-lg-6">
+							<input id="age" type="text" name="age" size="35"/><br>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-lg-4"></div>
+						<div class="col-lg-2">
+							<label class="control-label" for="workclass">Workclass</label>
+						</div>
+						<div class="col-lg-6">
+							<input id="workclass" type="text" name="workclass" size="35"/><br>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-lg-4"></div>
+						<div class="col-lg-2">
+							<label class="control-label" for="fnlwgt">Fnlwgt</label>
+						</div>
+						<div class="col-lg-6">
+							<input id="fnlwgt" type="text" name="fnlwgt" size="35"/><br>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-lg-4"></div>
+						<div class="col-lg-2">
+							<label class="control-label" for="education">Education</label>
+						</div>
+						<div class="col-lg-6">
+							<input id="education" type="text" name="education" size="35"/><br>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-lg-4"></div>
+						<div class="col-lg-2">
+							<label class="control-label" for="educationNumber">Education Number</label>
+						</div>
+						<div class="col-lg-6">
+							<input id="educationNumber" type="text" name="educationNumber" size="35"/><br>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-lg-4"></div>
+						<div class="col-lg-2">
+							<label class="control-label" for="maritalStatus">Marital Status</label>
+						</div>
+						<div class="col-lg-6">
+							<input id="maritalStatus" type="text" name="maritalStatus" size="35"/><br>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-lg-4"></div>
+						<div class="col-lg-2">
+							<label class="control-label" for="occupation">Occupation</label>
+						</div>
+						<div class="col-lg-6">
+							<input id="occupation" type="text" name="occupation" size="35"/><br>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-lg-4"></div>
+						<div class="col-lg-2">
+							<label class="control-label" for="relationship">Relationship</label>
+						</div>
+						<div class="col-lg-6">
+							<input id="relationship" type="text" name="relationship" size="35"/><br>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-lg-4"></div>
+						<div class="col-lg-2">
+							<label class="control-label" for="race">Race</label>
+						</div>
+						<div class="col-lg-6">
+							<input id="race" type="text" name="race" size="35"/><br>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-lg-4"></div>
+						<div class="col-lg-2">
+							<label class="control-label" for="sex">Sex</label>
+						</div>
+						<div class="col-lg-6">
+							<input id="sex" type="text" name="sex" size="35"/><br>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-lg-4"></div>
+						<div class="col-lg-2">
+							<label class="control-label" for="capitalGain">Capital Gain</label>
+						</div>
+						<div class="col-lg-6">
+							<input id="capitalGain" type="text" name="capitalGain" size="35"/><br>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-lg-4"></div>
+						<div class="col-lg-2">
+							<label class="control-label" for="capitalLoss">Capital Loss</label>
+						</div>
+						<div class="col-lg-6">
+							<input id="capitalLoss" type="text" name="capitalLoss" size="35"/><br>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-lg-4"></div>
+						<div class="col-lg-2">
+							<label class="control-label" for="hoursPerWeek">Hours per Week</label>
+						</div>
+						<div class="col-lg-6">
+							<input id="hoursPerWeek" type="text" name="hoursPerWeek" size="35"/><br>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-lg-4"></div>
+						<div class="col-lg-2">
+							<label class="control-label" for="nativeCountry">Nativ Country</label>
+						</div>
+						<div class="col-lg-6">
+							<input id="nativeCountry" type="text" name="nativeCountry" size="35"/><br>
+						</div>
+					</div>
+					<br><br>
+					<div class="col-lg-6"></div>
+					<div class="col-lg-1">
+						<input type="submit" value="Predict" class="btn btn-success"/>
+					</div>
+					<div class="col-lg-5"></div>
+				</form>
+		</div>
+		<div id="predict-result">
+			&nbsp;		
+		</div>
+	</section>
   
 </body>
 </html>
