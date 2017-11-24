@@ -21,153 +21,173 @@
 	<section>
 		<div class="container">
 			<br><br><br><br>
-				<form action = "http://localhost:5000/predict" method = "post" onsubmit="return submitForm(this);" class="form-horizontal">
-					<div class="form-group">
-						<div class="col-lg-4"></div>
-						<div class="col-lg-2">
-							<label class="control-label" for="age">Age</label>
+			<div class="panel panel-primary">
+				<div class="panel-heading"><center><h3>PREDICTION FORM</h3></center></div>
+				<div class="panel-body"><br><br>
+					<form action = "http://localhost:5000/predict" method = "post" onsubmit="return submitForm(this);" class="form-horizontal">
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="age"><font size="4px">Age</font></label>
+							</div>
+							<div class="col-lg-5">
+								<input id="age" type="text" name="age" size="35" class="form-control"/><br>
+							</div>
+							<div class="col-lg-2"></div>
 						</div>
-						<div class="col-lg-6">
-							<input id="age" type="text" name="age" size="35"/><br>
-						</div>
-					</div>
 
-					<div class="form-group">
-						<div class="col-lg-4"></div>
-						<div class="col-lg-2">
-							<label class="control-label" for="workclass">Workclass</label>
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="workclass"><font size="4px">Workclass</font></label>
+							</div>
+							<div class="col-lg-5">
+								<input id="workclass" type="text" name="workclass" size="35" class="form-control"/><br>
+							</div>
+							<div class="col-lg-2"></div>
 						</div>
-						<div class="col-lg-6">
-							<input id="workclass" type="text" name="workclass" size="35"/><br>
-						</div>
-					</div>
 
-					<div class="form-group">
-						<div class="col-lg-4"></div>
-						<div class="col-lg-2">
-							<label class="control-label" for="fnlwgt">Fnlwgt</label>
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="fnlwgt"><font size="4px">Fnlwgt</font></label>
+							</div>
+							<div class="col-lg-5">
+								<input id="fnlwgt" type="text" name="fnlwgt" size="35" class="form-control"/><br>
+							</div>
+							<div class="col-lg-2"></div>
 						</div>
-						<div class="col-lg-6">
-							<input id="fnlwgt" type="text" name="fnlwgt" size="35"/><br>
-						</div>
-					</div>
 
-					<div class="form-group">
-						<div class="col-lg-4"></div>
-						<div class="col-lg-2">
-							<label class="control-label" for="education">Education</label>
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="education"><font size="4px">Education</font></label>
+							</div>
+							<div class="col-lg-5">
+								<input id="education" type="text" name="education" size="35" class="form-control"/><br>
+							</div>
+							<div class="col-lg-2"></div>
 						</div>
-						<div class="col-lg-6">
-							<input id="education" type="text" name="education" size="35"/><br>
-						</div>
-					</div>
 
-					<div class="form-group">
-						<div class="col-lg-4"></div>
-						<div class="col-lg-2">
-							<label class="control-label" for="educationNumber">Education Number</label>
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="educationNumber"><font size="4px">Education Number</font></label>
+							</div>
+							<div class="col-lg-5">
+								<input id="educationNumber" type="text" name="educationNumber" size="35" class="form-control"/><br>
+							</div>
+							<div class="col-lg-2"></div>
 						</div>
-						<div class="col-lg-6">
-							<input id="educationNumber" type="text" name="educationNumber" size="35"/><br>
-						</div>
-					</div>
 
-					<div class="form-group">
-						<div class="col-lg-4"></div>
-						<div class="col-lg-2">
-							<label class="control-label" for="maritalStatus">Marital Status</label>
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="maritalStatus"><font size="4px">Marital Status</font></label>
+							</div>
+							<div class="col-lg-5">
+								<input id="maritalStatus" type="text" name="maritalStatus" size="35" class="form-control"/><br>
+							</div>
+							<div class="col-lg-2"></div>
 						</div>
-						<div class="col-lg-6">
-							<input id="maritalStatus" type="text" name="maritalStatus" size="35"/><br>
-						</div>
-					</div>
 
-					<div class="form-group">
-						<div class="col-lg-4"></div>
-						<div class="col-lg-2">
-							<label class="control-label" for="occupation">Occupation</label>
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="occupation"><font size="4px">Occupation</font></label>
+							</div>
+							<div class="col-lg-5">
+								<input id="occupation" type="text" name="occupation" size="35" class="form-control"/><br>
+							</div>
+							<div class="col-lg-2"></div>
 						</div>
-						<div class="col-lg-6">
-							<input id="occupation" type="text" name="occupation" size="35"/><br>
-						</div>
-					</div>
 
-					<div class="form-group">
-						<div class="col-lg-4"></div>
-						<div class="col-lg-2">
-							<label class="control-label" for="relationship">Relationship</label>
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="relationship"><font size="4px">Relationship</font></label>
+							</div>
+							<div class="col-lg-5">
+								<input id="relationship" type="text" name="relationship" size="35" class="form-control"/><br>
+							</div>
+							<div class="col-lg-2"></div>
 						</div>
-						<div class="col-lg-6">
-							<input id="relationship" type="text" name="relationship" size="35"/><br>
-						</div>
-					</div>
 
-					<div class="form-group">
-						<div class="col-lg-4"></div>
-						<div class="col-lg-2">
-							<label class="control-label" for="race">Race</label>
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="race"><font size="4px">Race</font></label>
+							</div>
+							<div class="col-lg-5">
+								<input id="race" type="text" name="race" size="35" class="form-control"/><br>
+							</div>
+							<div class="col-lg-2"></div>
 						</div>
-						<div class="col-lg-6">
-							<input id="race" type="text" name="race" size="35"/><br>
-						</div>
-					</div>
 
-					<div class="form-group">
-						<div class="col-lg-4"></div>
-						<div class="col-lg-2">
-							<label class="control-label" for="sex">Sex</label>
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="sex"><font size="4px">Sex</font></label>
+							</div>
+							<div class="col-lg-5">
+								<input id="sex" type="text" name="sex" size="35" class="form-control"/><br>
+							</div>
+							<div class="col-lg-2"></div>
 						</div>
-						<div class="col-lg-6">
-							<input id="sex" type="text" name="sex" size="35"/><br>
-						</div>
-					</div>
 
-					<div class="form-group">
-						<div class="col-lg-4"></div>
-						<div class="col-lg-2">
-							<label class="control-label" for="capitalGain">Capital Gain</label>
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="capitalGain"><font size="4px">Capital Gain</font></label>
+							</div>
+							<div class="col-lg-5">
+								<input id="capitalGain" type="text" name="capitalGain" size="35" class="form-control"/><br>
+							</div>
+							<div class="col-lg-2"></div>
 						</div>
-						<div class="col-lg-6">
-							<input id="capitalGain" type="text" name="capitalGain" size="35"/><br>
-						</div>
-					</div>
 
-					<div class="form-group">
-						<div class="col-lg-4"></div>
-						<div class="col-lg-2">
-							<label class="control-label" for="capitalLoss">Capital Loss</label>
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="capitalLoss"><font size="4px">Capital Loss</font></label>
+							</div>
+							<div class="col-lg-5">
+								<input id="capitalLoss" type="text" name="capitalLoss" size="35" class="form-control"/><br>
+							</div>
+							<div class="col-lg-2"></div>
 						</div>
-						<div class="col-lg-6">
-							<input id="capitalLoss" type="text" name="capitalLoss" size="35"/><br>
-						</div>
-					</div>
 
-					<div class="form-group">
-						<div class="col-lg-4"></div>
-						<div class="col-lg-2">
-							<label class="control-label" for="hoursPerWeek">Hours per Week</label>
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="hoursPerWeek"><font size="4px">Hours per Week</font></label>
+							</div>
+							<div class="col-lg-5">
+								<input id="hoursPerWeek" type="text" name="hoursPerWeek" size="35" class="form-control"/><br>
+							</div>
+							<div class="col-lg-2"></div>
 						</div>
-						<div class="col-lg-6">
-							<input id="hoursPerWeek" type="text" name="hoursPerWeek" size="35"/><br>
-						</div>
-					</div>
 
-					<div class="form-group">
-						<div class="col-lg-4"></div>
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="nativeCountry"><font size="4px">Native Country</font></label>
+							</div>
+							<div class="col-lg-5">
+								<input id="nativeCountry" type="text" name="nativeCountry" size="35" class="form-control"/><br>
+							</div>
+							<div class="col-lg-2"></div>
+						</div>
+						<br><br>
+						<div class="col-lg-5"></div>
 						<div class="col-lg-2">
-							<label class="control-label" for="nativeCountry">Nativ Country</label>
+							<input type="submit" value="Predict" class="btn btn-success form-control"/>
 						</div>
-						<div class="col-lg-6">
-							<input id="nativeCountry" type="text" name="nativeCountry" size="35"/><br>
-						</div>
-					</div>
+						<div class="col-lg-5"></div>
+					</form>
 					<br><br>
-					<div class="col-lg-6"></div>
-					<div class="col-lg-1">
-						<input type="submit" value="Predict" class="btn btn-success"/>
-					</div>
-					<div class="col-lg-5"></div>
-				</form>
+				</div>
+			</div>
 		</div>
 		<div id="predict-result">
 			&nbsp;		
