@@ -1,10 +1,10 @@
 from flask import Flask, redirect, url_for, request, render_template
-from predict import predictResult
+from predict.prediction import predictResult
 from sklearn.externals import joblib
 
 app = Flask(__name__)
 
-@app.route('/index')
+@app.route('/')
 def index():
 	return render_template('index.html')
 

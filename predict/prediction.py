@@ -78,7 +78,7 @@ def predictResult(model, age, workclass, fnlwgt, education, educationNumber,
 
 	inputData = pd.DataFrame.from_records(input, columns=labels)
 
-	# handle the empty value in integer valued columns
+	# handle the not integer value in integer valued columns
 	inputData = handleEmpty(inputData, 'age')
 	inputData = handleEmpty(inputData, 'fnlwgt')
 	inputData = handleEmpty(inputData, 'education-num')
@@ -91,7 +91,7 @@ def predictResult(model, age, workclass, fnlwgt, education, educationNumber,
 
 	# load the mode data
 	pickleIn = open('static/model/mode_dict.pickle','rb')
-	modeDict = pickle.load(pickleIn)
+	modeDict = pickle.load(pickleIn, encoding='latin1')
 
 	# label encode every column with string value
 	inputData = labelEncode(inputData, 'workclass', modeDict)
@@ -102,8 +102,6 @@ def predictResult(model, age, workclass, fnlwgt, education, educationNumber,
 	inputData = labelEncode(inputData, 'race', modeDict)
 	inputData = labelEncode(inputData, 'sex', modeDict)
 	inputData = labelEncode(inputData, 'native-country', modeDict)
-
-	# later should handle if the data is not in the label encoder
 
 	# one hot encoding
 	temporaryInputData = inputData[['workclass', 'education', 'education-num', 'marital-status', 'occupation', 'relationship', 'sex', 'capital-gain', 'capital-loss']].as_matrix()

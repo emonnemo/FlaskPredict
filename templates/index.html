@@ -1,75 +1,316 @@
 <html>
 <head>
-	<title>Prediction Web Page</title>
+	<title>Income Prediction Web Page</title>
 	<script type="text/javascript" src="{{url_for('static', filename='app.js')}}"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-	<div>
-		<form action = "http://localhost:5000/predict" method = "post" onsubmit="return submitForm(this);">
-			<table>
-				<tr>
-					<td>Age</td>
-					<td><input id="age" type="text" name="age" /><br></td>
-				</tr>
-				<tr>
-					<td>Workclass</td>
-					<td><input id="workclass" type="text" name="workclass" /><br></td>
-				</tr>
-				<tr>
-					<td>fnlwgt</td>
-					<td><input id="fnlwgt" type="text" name="fnlwgt" /><br></td>
-				</tr>
-				<tr>
-					<td>Education</td>
-					<td><input id="education" type="text" name="education" /><br></td>
-				</tr>
-				<tr>
-					<td>Education number</td>
-					<td><input id="educationNumber" type="text" name="educationNumber" /><br></td>
-				</tr>
-				<tr>
-					<td>Marital Status</td>
-					<td><input id="maritalStatus" type="text" name="maritalStatus" /><br></td>
-				</tr>
-				<tr>
-					<td>Occupation</td>
-					<td><input id="occupation" type="text" name="occupation" /><br></td>
-				</tr>
-				<tr>
-					<td>Relationship</td>
-					<td><input id="relationship" type="text" name="relationship" /><br></td>
-				</tr>
-				<tr>
-					<td>Race</td>
-					<td><input id="race" type="text" name="race" /><br></td>
-				</tr>
-				<tr>
-					<td>Sex</td>
-					<td><input id="sex" type="text" name="sex" /><br></td>
-				</tr>
-				<tr>
-					<td>Capital Gain</td>
-					<td><input id="capitalGain" type="text" name="capitalGain" /><br></td>
-				</tr>
-				<tr>
-					<td>Capital Loss</td>
-					<td><input id="capitalLoss" type="text" name="capitalLoss" /><br></td>
-				</tr>
-				<tr>
-					<td>Hours Per Week</td>
-					<td><input id="hoursPerWeek" type="text" name="hoursPerWeek" /><br></td>
-				</tr>
-				<tr>
-					<td>Native Country</td>
-					<td><input id="nativeCountry" type="text" name="nativeCountry" /><br></td>
-				</tr>
-			</table>
-			<input type="submit" value="Predict" /><br>
-		</form>
-	</div>
-	<div id="predict-result">
-		&nbsp;		
-	</div>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">Neptunus</a>
+	    </div>
+	    <ul class="nav navbar-nav">
+	      <li class="active"><a href="/">Home</a></li>
+	    </ul>
+	    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> &nbsp;About</a></li>
+    </ul>
+	  </div>
+	</nav>
+	<section>
+		<div class="container">
+			<br><br><br><br>
+			<div class="panel panel-primary">
+				<div class="panel-heading"><center><h3>PREDICTION FORM</h3></center></div>
+				<div class="panel-body"><br><br>
+					<form action = "/predict" method = "post" onsubmit="return submitForm(this);" class="form-horizontal">
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="age"><font size="4px">Age</font></label>
+							</div>
+							<div class="col-lg-5">
+								<input id="age" type="number" name="age" size="35" class="form-control"/><br>
+							</div>
+							<div class="col-lg-2"></div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="workclass"><font size="4px">Workclass</font></label>
+							</div>
+							<div class="col-lg-5">
+								<select id="workclass" name="workclass" class="form-control">
+                  <option value="?">?</option>
+                  <option value="Private">Private</option>
+                  <option value="Self-emp-not-inc">Self-emp-not-inc</option>
+                  <option value="Self-emp-inc">Self-emp-inc</option>
+                  <option value="Federal-gov">Federal-gov</option>
+                  <option value="Local-gov">Local-gov</option>
+                  <option value="State-gov">State-gov</option>
+                  <option value="Without-pay">Without-pay</option>
+                  <option value="Never-worked">Never-worked</option>
+                </select>
+                <br>
+							</div>
+							<div class="col-lg-2"></div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="fnlwgt"><font size="4px">Fnlwgt</font></label>
+							</div>
+							<div class="col-lg-5">
+								<input id="fnlwgt" type="number" name="fnlwgt" size="35" class="form-control"/><br>
+							</div>
+							<div class="col-lg-2"></div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="education"><font size="4px">Education</font></label>
+							</div>
+							<div class="col-lg-5">
+								<select id="education" name="education" class="form-control">
+                  <option value="Bachelors">Bachelors</option>
+                  <option value="Some-college">Some-college</option>
+                  <option value="11th">11th</option>
+                  <option value="HS-grad">HS-grad</option>
+                  <option value="Prof-school">Prof-school</option>
+                  <option value="Assoc-acdm">Assoc-acdm</option>
+                  <option value="Assoc-voc">Assoc-voc</option>
+                  <option value="9th">9th</option>
+                  <option value="7th-8th">7th-8th</option>
+                  <option value="12th">12th</option>
+                  <option value="Masters">Masters</option>
+                  <option value="1st-4th">1st-4th</option>
+                  <option value="10th">10th</option>
+                  <option value="Doctorate">Doctorate</option>
+                  <option value="5th-6th">5th-6th</option>
+                  <option value="Preschool">Preschool</option>
+                </select>
+                <br>
+							</div>
+							<div class="col-lg-2"></div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="educationNumber"><font size="4px">Education Number</font></label>
+							</div>
+							<div class="col-lg-5">
+								<input id="educationNumber" type="number" name="educationNumber" size="35" class="form-control"/><br>
+							</div>
+							<div class="col-lg-2"></div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="maritalStatus"><font size="4px">Marital Status</font></label>
+							</div>
+							<div class="col-lg-5">
+								<select id="maritalStatus" name="maritalStatus" class="form-control">
+                  <option value="Married-civ-spouse">Married-civ-spouse</option>
+                  <option value="Divorced">Divorced</option>
+                  <option value="Never-married">Never-married</option>
+                  <option value="Separated">Separated</option>
+                  <option value="Widowed">Widowed</option>
+                  <option value="Married-spouse-absent">Married-spouse-absent</option>
+                  <option value="Married-AF-spouse">Married-AF-spouse</option>
+                </select>
+                <br>
+							</div>
+							<div class="col-lg-2"></div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="occupation"><font size="4px">Occupation</font></label>
+							</div>
+							<div class="col-lg-5">
+								<select id="occupation" name="occupation" class="form-control">
+                  <option value="?">?</option>
+                  <option value="Tech-support">Tech-support</option>
+                  <option value="Craft-repair">Craft-repair</option>
+                  <option value="Other-service">Other-service</option>
+                  <option value="Sales">Sales</option>
+                  <option value="Exec-managerial">Exec-managerial</option>
+                  <option value="Prof-specialty">Prof-specialty</option>
+                  <option value="Handlers-cleaners">Handlers-cleaners</option>
+                  <option value="Machine-op-inspct">Machine-op-inspct</option>
+                  <option value="Adm-clerical">Adm-clerical</option>
+                  <option value="Farming-fishing">Farming-fishing</option>
+                  <option value="Transport-moving">Transport-moving</option>
+                  <option value="Priv-house-serv">Priv-house-serv</option>
+                  <option value="Protective-serv">Protective-serv</option>
+                  <option value="Armed-Forces">Armed-Forces</option>
+                </select>
+                <br>
+							</div>
+							<div class="col-lg-2"></div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="relationship"><font size="4px">Relationship</font></label>
+							</div>
+							<div class="col-lg-5">
+								<select id="relationship" name="relationship" class="form-control">
+                  <option value="Wife">Wife</option>
+                  <option value="Own-child">Own-child</option>
+                  <option value="Husband">Husband</option>
+                  <option value="Not-in-family">Not-in-family</option>
+                  <option value="Other-relative">Other-relative</option>
+                  <option value="Unmarried">Unmarried</option>
+                </select>
+                <br>
+							</div>
+							<div class="col-lg-2"></div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="race"><font size="4px">Race</font></label>
+							</div>
+							<div class="col-lg-5">
+								<select id="race" name="race" class="form-control">
+                  <option value="White">White</option>
+                  <option value="Asian-Pac-Islander">Asian-Pac-Islander</option>
+                  <option value="Amer-Indian-Eskimo">Amer-Indian-Eskimo</option>
+                  <option value="Other">Other</option>
+                  <option value="Black">Black</option>
+                </select>
+                <br>
+							</div>
+							<div class="col-lg-2"></div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="sex"><font size="4px">Sex</font></label>
+							</div>
+							<div class="col-lg-5">
+								<select id="sex" name="sex" class="form-control">
+                  <option value="Female">Female</option>
+                  <option value="Male">Male</option>
+                </select>
+                <br>
+							</div>
+							<div class="col-lg-2"></div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="capitalGain"><font size="4px">Capital Gain</font></label>
+							</div>
+							<div class="col-lg-5">
+								<input id="capitalGain" type="number" name="capitalGain" size="35" class="form-control"/><br>
+							</div>
+							<div class="col-lg-2"></div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="capitalLoss"><font size="4px">Capital Loss</font></label>
+							</div>
+							<div class="col-lg-5">
+								<input id="capitalLoss" type="number" name="capitalLoss" size="35" class="form-control"/><br>
+							</div>
+							<div class="col-lg-2"></div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="hoursPerWeek"><font size="4px">Hours per Week</font></label>
+							</div>
+							<div class="col-lg-5">
+								<input id="hoursPerWeek" type="number" name="hoursPerWeek" size="35" class="form-control"/><br>
+							</div>
+							<div class="col-lg-2"></div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-3">
+								<label class="control-label" for="nativeCountry"><font size="4px">Native Country</font></label>
+							</div>
+							<div class="col-lg-5">
+								<select id="nativeCountry" name="nativeCountry" class="form-control">
+                  <option value="?">?</option>
+                  <option value="United-States">United-States</option>
+                  <option value="Cambodia">Cambodia</option>
+                  <option value="England">England</option>
+                  <option value="Puerto-Rico">Puerto-Rico</option>
+                  <option value="Canada">Canada</option>
+                  <option value="Germany">Germany</option>
+                  <option value="Outlying-US(Guam-USVI-etc)">Outlying-US(Guam-USVI-etc)</option>
+                  <option value="India">India</option>
+                  <option value="Japan">Japan</option>
+                  <option value="Greece">Greece</option>
+                  <option value="South">South</option>
+                  <option value="China">China</option>
+                  <option value="Cuba">Cuba</option>
+                  <option value="Iran">Iran</option>
+                  <option value="Honduras">Honduras</option>
+                  <option value="Philippines">Philippines</option>
+                  <option value="Italy">Italy</option>
+                  <option value="Poland">Poland</option>
+                  <option value="Jamaica">Jamaica</option>
+                  <option value="Vietnam">Vietnam</option>
+                  <option value="Mexico">Mexico</option>
+                  <option value="Portugal">Portugal</option>
+                  <option value="Ireland">Ireland</option>
+                  <option value="France">France</option>
+                  <option value="Dominican-Republic">Dominican-Republic</option>
+                  <option value="Laos">Laos</option>
+                  <option value="Ecuador">Ecuador</option>
+                  <option value="Taiwan">Taiwan</option>
+                  <option value="Haiti">Haiti</option>
+                  <option value="Columbia">Columbia</option>
+                  <option value="Hungary">Hungary</option>
+                  <option value="Guatemala">Guatemala</option>
+                  <option value="Nicaragua">Nicaragua</option>
+                  <option value="Scotland">Scotland</option>
+                  <option value="Thailand">Thailand</option>
+                  <option value="Yugoslavia">Yugoslavia</option>
+                  <option value="El-Salvador">El-Salvador</option>
+                  <option value="Trinadad&amp;Tobago">Trinadad&amp;Tobago</option>
+                  <option value="Peru">Peru</option>
+                  <option value="Hong">Hong</option>
+                  <option value="Holand-Netherlands">Holand-Netherlands</option>
+                </select>
+                <br>
+							</div>
+							<div class="col-lg-2"></div>
+						</div>
+						<br><br>
+						<div class="col-lg-5"></div>
+						<div class="col-lg-2">
+							<input type="submit" value="Predict" class="btn btn-success form-control"/>
+						</div>
+						<div class="col-lg-5"></div>
+					</form>
+					<br><br>
+          <div id="predict-result" align="center">
+            &nbsp;    
+          </div>
+				</div>
+			</div>
+		</div>
+	</section>
   
 </body>
 </html>

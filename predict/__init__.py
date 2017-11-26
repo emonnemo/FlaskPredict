@@ -1,1 +1,1 @@
-from predict.predict import predictResult
+from predict.prediction import predictResult

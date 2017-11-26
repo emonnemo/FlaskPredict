@@ -13,7 +13,7 @@ function submitForm(formNode) {
 		}
 
 	}
-	xhtr.open("POST","http://localhost:5000/predict", true);
+	xhtr.open("POST","/predict", true);
 	var formData = new FormData(formNode);
 	xhtr.send(formData);
 	return false;
